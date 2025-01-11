@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoInput</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<script>
+    let todos = [
+        { id: 1, text: "Welcome to Todo manager Task", completed: false },
+        { id: 2, text: "In this Task you are going to build your own custom logic to create todo manager", completed: false },
+        { id: 3, text: "Task objectives is:", completed: false },
+        { id: 4, text: "a. DOM manipulation", completed: false },
+        { id: 5, text: "b. Event Handling", completed: false },
+        { id: 6, text: "c. Data storing (Sessions or cookies)", completed: false }
+    ];
+    let currentFilter = 'all';
+
+    
+    function loadTodos() {
+        const savedTodos = localStorage.getItem('todos');
+        if (savedTodos) {
+            todos = JSON.parse(savedTodos);
+        }
+        renderTodos();
+    }
+
+    
+    function saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }
+
+    function addTodo() {
+        const input = document.getElementById('todoInput');
+        const text = input.value.trim();
+
+      if (text.length < 5) {
+        alert('Task must be at least 5 characters long. ') ;
+        return;
+      }
+        if (text) {
+            todos.push({
+                id: Date.now(),
+                text: text,
+                completed: false
+            });
+            input.value = '';
+            saveTodos();
+            renderTodos();
+        }
+    }
+
+    function deleteTodo(id) {
+        todos = todos.filter(todo => todo.id !== id);
+        saveTodos();
+        renderTodos();
+    }
+
+    function toggleTodo(id) {
+        todos = todos.map(todo => {
+            if (todo.id === id) {
+                return { ...todo, completed: !todo.completed };
+            }
+            return todo;
+        });
+        saveTodos();
+        renderTodos();
+    }
+
+    function editTodo(id) {
+        const todo = todos.find(t => t.id === id);
+        if (todo) {
+            const newText = prompt('Edit todo:', todo.text);
+            if (newText !== null && newText.trim() !== '') {
+                todos = todos.map(t => {
+                    if (t.id === id) {
+                        return { ...t, text: newText.trim() };
+                    }
+                    return t;
+                });
+                saveTodos();
+                renderTodos();
+            }
+        }
+    }
+
+    function filterTodos(filter) {
+        currentFilter = filter;
+        renderTodos();
+    }
+
+    function deleteDoneTasks() {
+        todos = todos.filter(todo => !todo.completed);
+        saveTodos();
+        renderTodos();
+    }
+
+    function deleteAllTasks() {
+        todos = [];
+        saveTodos();
+        renderTodos();
+    }
+
+    function renderTodos() {
+        const todoList = document.getElementById('todoList');
+        todoList.innerHTML = '';
+
+        let filteredTodos = todos;
+        if (currentFilter === 'done') {
+            filteredTodos = todos.filter(todo => todo.completed);
+        } else if (currentFilter === 'todo') {
+            filteredTodos = todos.filter(todo => !todo.completed);
+        }
+
+        filteredTodos.forEach(todo => {
+            const todoItem = document.createElement('div');
+            todoItem.className = 'todo-item';
+            todoItem.innerHTML = `
+                <span class="todo-text ${todo.completed ? 'completed' : ''}">${todo.text}</span>
+                <div class="action-buttons">
+                     <input type="checkbox" class="todo-checkbox" 
+                       ${todo.completed ? 'checked' : ''} 
+                       onchange="toggleTodo(${todo.id})">
+                    <button class="edit-btn" onclick="editTodo(${todo.id})"><i class="fa-solid fa-pen" style="color: #FFD43B;"></i></button>
+                    <button class="delete-btn" onclick="deleteTodo(${todo.id})"><i class="fa-solid fa-trash" style="color: #d70909;"></i></button>
+                </div>
+            `;
+            todoList.appendChild(todoItem);
+        });
+    }
+
+    
+    document.getElementById('todoInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            addTodo();
+        }
+    });
+
+    
+    loadTodos();
+</script>
+<body>
+    <div class="container">
+        <h1>TodoInput</h1>
+        <div class="input-section">
+            <div class="input-container">
+                <span class="todo-icon"><i class="fa-solid fa-book" style="color: #f3f4f7;"></i></span>
+                <input type="text" id="todoInput" placeholder="New Todo">
+            </div>
+            <button class="add-btn" id="a1" onclick="addTodo()">Add new task</button>
+        </div>
+
+        <h2>Todo List</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn" id="a1" onclick="filterTodos('all')">All</button>
+            <button class="filter-btn" id="a1"  onclick="filterTodos('done')">Done</button>
+            <button class="filter-btn" id="a1"  onclick="filterTodos('todo')">Todo</button>
+        </div>
+
+        <div id="todoList">
+            
+            <div class="todo-item">
+                
+                <span class="todo-text">Welcome to Todo manager Task</span>
+                <div class="action-buttons">
+                    <input type="checkbox" class="todo-checkbox">
+                    <button class="edit-btn"><i class="fa-solid fa-pen" style="color: #FFD43B;"></i></button>
+                    <button class="delete-btn"><i class="fa-solid fa-trash" style="color: #d70909;"></i></button>
+                </div>
+            </div>
+            <div class="todo-item">
+                
+                <span class="todo-text">In this Task you are going to build your own custom logic to create todo manager</span>
+                <div class="action-buttons">
+                    <input type="checkbox" class="todo-checkbox">
+                    <button class="edit-btn"><i class="fa-solid fa-pen" style="color: #FFD43B;"></i></button>
+                    <button class="delete-btn"><i class="fa-solid fa-trash" style="color: #d70909;"></i></button>
+                </div>
+            </div>
+            <div class="todo-item">
+                
+                <span class="todo-text">Task objectives is:</span>
+                <div class="action-buttons">
+                    <input type="checkbox" class="todo-checkbox">
+                    <button class="edit-btn"><i class="fa-solid fa-pen" style="color: #FFD43B;"></i></button>
+                    <button class="delete-btn"><i class="fa-solid fa-trash" style="color: #d70909;"></i></button>
+                </div>
+            </div>
+            <div class="todo-item">
+                
+                <span class="todo-text">a. DOM manipulation</span>
+                <div class="action-buttons">
+                    <input type="checkbox" class="todo-checkbox">
+                    <button class="edit-btn"><i class="fa-solid fa-pen" style="color: #FFD43B;"></i></button>
+                    <button class="delete-btn"><i class="fa-solid fa-trash" style="color: #d70909;"></i></button>
+                </div>
+            </div>
+            <div class="todo-item">
+                
+                <span class="todo-text">b. Event Handling</span>
+                <div class="action-buttons">
+                    <input type="checkbox" class="todo-checkbox">
+                    <button class="edit-btn"><i class="fa-solid fa-pen" style="color: #FFD43B;"></i></button>
+                    <button class="delete-btn"><i class="fa-solid fa-trash" style="color: #d70909;"></i></button>
+                </div>
+            </div>
+            <div class="todo-item">
+                
+                <span class="todo-text">c. Data storing (Sessions or cookies)</span>
+                <div class="action-buttons">
+                    <input type="checkbox" class="todo-checkbox">
+                    <button class="edit-btn"><i class="fa-solid fa-pen" style="color: #FFD43B;"></i></button>
+                    <button class="delete-btn"><i class="fa-solid fa-trash" style="color: #d70909;"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-buttons">
+            <button class="bottom-delete-btn" id="a2" onclick="deleteDoneTasks()">Delete Done Tasks</button>
+            <button class="bottom-delete-btn" id="a2" onclick="deleteAllTasks()">Delete All Tasks</button>
+        </div>
+    </div>
+
+    
+</body>
+</html>
