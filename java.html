@@ -4,90 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo Manager</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="styletodo2.css">
+ 
 </head>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const taskInput = document.getElementById('taskInput');
-    const addTaskButton = document.getElementById('addTaskButton');
-    const todoList = document.getElementById('todoList');
-    const deleteDoneTasks = document.getElementById('deleteDoneTasks');
-    const deleteAllTasks = document.getElementById('deleteAllTasks');
-  
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  
-    const renderTasks = () => {
-      todoList.innerHTML = '';
-      tasks.forEach((task, index) => {
-        const listItem = document.createElement('li');
-        listItem.className = 'task-item';
-        listItem.innerHTML = `
-          <span style= " ${task.done  ? ' text-decoration: line-through ;' : ''}" > ${ task.name }</span>
-          <div>
-            <input type="checkbox"  ${task.done ? 'checked' : ''} data-index="${index}" class="toggle-task">
-            <button data-index="${index}" class="edit-task"  id ="a2">✏️</button>
-            <button data-index="${index}" class="delete-task" id="a2">🗑️</button>
-          </div>
-        `;
-        todoList.appendChild(listItem); 
-      });
-    };
-  
-    const saveTasks = () => {
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-      renderTasks();
-    };
-  
-    addTaskButton.addEventListener('click', () => {
-      const taskName = taskInput.value.trim();
-      if (taskName.length < 5) {
-        alert('Task must be at least 5 characters long. ') ;
-        return;
-      }
-      tasks.push({ name: taskName, done: false });
-      saveTasks();
-      taskInput.value = '';
-    });
-  
-    todoList.addEventListener('click', (e) => {
-      const index = e.target.dataset.index;
-      if (e.target.classList.contains('toggle-task')) {
-        tasks[index].done = !tasks[index].done;
-      } else if (e.target.classList.contains('edit-task')) {
-        const newName = prompt('Edit task name:', tasks[index].name);
-        if (newName) tasks[index].name = newName.trim();
-      } else if (e.target.classList.contains('delete-task')) {
-        tasks.splice(index, 1);
-      }
-      saveTasks();
-    });
-  
-    deleteDoneTasks.addEventListener('click', () => {
-      const filteredTasks = tasks.filter((task) => !task.done);
-      tasks.length = 0;
-      tasks.push(...filteredTasks);
-      saveTasks();
-    });
-  
-    deleteAllTasks.addEventListener('click', () => {
-      tasks.length = 0;
-      saveTasks();
-    });
-  
-    renderTasks();
-  });
-</script>
+ 
 <body>
+  <script src="script.js"></script>
   <div class="container">
+    
     <header>
-      <h1>TodoInput</h1>
-      <div class="input-section" style="border: 1px black double;" id="a1">
-      
-      <input type="text" id="taskInput" placeholder="New Task">
-      <button id="addTaskButton">Add new task</button>
+    <h1>TodoInput</h1>
+    <div class="input-section">
+      <div class="input-container">
+  
+        <span class="todo-icon"><i class="fa-solid fa-book" style="color: #f3f4f7;"></i></span>
+      <input type="text" id="todoInput"  placeholder="New Task">
+    </div>
+      <button class="add-btn" id="a1" id="addTaskButton" > Add new task</button>
         
       </div>
     </header>
+
     <main>
       <div class="filter-buttons">
         <button id="allTasks">All</button>
@@ -99,8 +38,8 @@
       </ul>
     </main>
     <footer>
-      <button id="deleteDoneTasks" class="delete">Delete Done Tasks</button>
-      <button id="deleteAllTasks" class="delete">Delete All Tasks</button>
+      <button  class="bottom-delete-btn" id="a2" onclick="deleteDoneTasks() " >Delete Done Tasks</button>
+      <button  class="bottom-delete-btn" id="a2"  onclick="deleteAllTasks() ">Delete All Tasks</button>
     </footer>
   </div>
  
