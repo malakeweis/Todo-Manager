@@ -22,17 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const listItem = document.createElement("li");
         listItem.className = "task-item";
         listItem.innerHTML = `
-        <span style="${task.done ? "text-decoration: line-through;" : ""}">${
+         <div class="todo-item">
+
+        <span style="${task.done ? "text-decoration: line-through;color: red;" : ""}">${
           task.name
         }</span>
-        <div>
-          <input type="checkbox" ${
+
+        <div class="task-actions" >
+          <input type="checkbox"    ${ 
             task.done ? "checked" : ""
           } data-index="${index}" class="toggle-task">
           <button data-index="${index}" class="edit-task"><i data-index="${index}" class="fa-solid fa-pen edit-task" style="color: #FFD43B;"></i></button>
           <button data-index="${index}" class="delete-task">
-            <i data-index="${index}" class="fa-solid fa-trash delete-task" style="color: #d70909;"></i>
+            <i data-index="${index}" class="fa-solid fa-trash delete-task " style="color: #d70909;"></i>
           </button>
+        </div>
         </div>
       `;
         todoList.appendChild(listItem);
