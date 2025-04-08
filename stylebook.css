@@ -1,0 +1,240 @@
+
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    
+}
+ul {
+    list-style: none;
+    list-style: none;
+    margin-left: 29%;
+    align-items: center;
+    display: flex;
+
+    gap: 19px;
+    margin-top: -28px;
+
+    
+}
+.pharg {
+    padding: 11px;
+    text-align: center;
+}
+/* 
+.material icons {
+
+} */
+#fav {
+ 
+    margin: 0% 0% 0% 84%;
+    top: 20%;
+    position: absolute;
+    top: 1%;
+}
+#ser {
+
+    margin: 0% 0% 0% 82%;
+    top: 20%;
+    position: absolute;
+    top: 1%;
+}
+#logo{
+    width: 5%;
+    height: 20%; 
+    margin-left: 12%;
+
+
+    
+}
+nav {
+    
+    border-style: none none outset none;
+    border-color: rgb(16, 161, 152);
+}
+
+#imghome{
+    width: 40%;
+    
+    margin-left: 50%;
+   
+    display: flex;
+
+   
+    margin: -97% 6% 18% 54%;
+}
+
+#welcomdiv{
+    padding: 70px;
+}
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-large;
+}
+span {
+    color:  rgb(22, 162, 153);
+}
+button.larnmore {
+    padding: 10px;
+    background-color: rgb(22, 162, 153);
+    border-style: none;
+    color: white;
+    margin: 25px 0px 0px 1px;
+    
+    
+}
+
+.about2 {
+    
+    display: flex;
+    justify-content: space-around;
+}
+.fastdelivery {
+   
+
+    padding: 6px;
+    border-color: rgb(22, 162, 153);
+    border-style: solid;
+
+}
+/* h3 {
+   
+   
+} */
+#idh3{
+    margin: 6% 0% 9% 30%;  
+}
+.securepayment {
+    border-color:rgb(22, 162, 153); 
+   
+    border-style: solid;
+
+}
+.bestdeal{
+    border-color:rgb(22, 162, 153); 
+   
+    border-style: solid;
+
+}
+.l24x7{
+    border-color:rgb(22, 162, 153); 
+   
+    border-style: solid;
+
+}
+#aimg{
+    margin: 3% 0% 0% 5%;
+   
+    width: 32%;
+ 
+}
+
+.aboutustext{
+    margin: -18% 3% 28% 64%;
+
+}
+
+#feh2 {
+    margin:-16% 0% 7% 44%;
+}
+
+.container{
+    display: flex;
+    margin-right: 105%;
+    gap: 52px;
+    padding: 22.5px;
+    margin: 9% 103% 11% 0%;
+   
+}
+#button-fetured{
+    padding: 2px;
+  text-align: center;
+    margin: -3% -11% 21% -16%;
+}
+
+/*
+
+.a1{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a2{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a3{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a4{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+
+.a5{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+
+.a15{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a6{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a7{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a8{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a9{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a10{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a11{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a12{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a13{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+.a14{
+    border-style: solid;
+    border-color: rgb(22, 162, 153); ;
+}
+*/
+    
+
+
+.af {
+    width: 163%;
+}
+.na {
+    width: 163%;
+ 
+
+}
+/* #titlena {
+    text-align: center;
+} */
+.arrivals {
+    margin: 2% 19% 10% 20%;
+}
+/* .button-arrivals {
+
+} */
